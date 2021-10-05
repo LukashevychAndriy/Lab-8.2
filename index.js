@@ -1,46 +1,25 @@
-// Lab_04_1
-// Лукашевич Андрій
-// Лабораторна робота № 4.1
-// Цикли
-// Варіант 12
+const xp = +prompt('Введіть х початкове'); // x початкове
+const xk = +prompt('Введіть х кінцеве'); // x кінцеве
+const dx = +prompt('Введіть крок'); // крок обчислень
 
-const N = prompt('Введіть значення параметру N');
+console.log('---------------------------');
+console.log('|\tx\t|\ty\t|');
+console.log('---------------------------');
 
-let i;
-let S = 0;
+for (let x = xp; x <= xk; x += dx) {
+  const A = (2 + x) / x ** 2 + 1;
 
-for (let i = N; i <= 22; i++) {
-  S += Math.sqrt(i ** 2 + N ** 2) / i;
+  let B;
+
+  if (x < 0) {
+    B = x ** 3 - 2 * x ** 4;
+  } else if (x >= 0 && x <= 2) {
+    B = (Math.abs(x) + Math.E ** x) ** 3;
+  } else {
+    B = 4 * Math.cos(x ** 2 - 2);
+  }
+
+  const y = A + B;
+
+  console.log(`|\t${x.toFixed(2)}\t|\t${y.toFixed(3)}\t|`);
 }
-
-console.log(S);
-
-S = 0;
-
-for (let i = 22; i >= N; i--) {
-  S += Math.sqrt(i ** 2 + N ** 2) / i;
-}
-
-console.log(S);
-
-S = 0;
-i = N;
-
-while (i <= 22) {
-  S += Math.sqrt(i ** 2 + N ** 2) / i;
-  i++;
-}
-
-console.log(S);
-
-S = 0;
-i = N;
-
-do {
-  if (i > 22) break;
-
-  S += Math.sqrt(i ** 2 + N ** 2) / i;
-  i++;
-} while (i <= 22);
-
-console.log(S);
