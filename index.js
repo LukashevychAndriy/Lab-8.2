@@ -1,15 +1,46 @@
-// Lab_03_4
+// Lab_04_1
 // Лукашевич Андрій
-// Лабораторна робота № 3.4
-// Розгалуження, задане графіком функції
+// Лабораторна робота № 4.1
+// Цикли
 // Варіант 12
 
-const x = +prompt('x = '); // Запрошуємо ввід значення х
-const y = +prompt('y = '); // Запрошуємо ввід значення y
-const R = +prompt('R = '); // Запрошуємо ввід значення вхідного параметру R
+const N = prompt('Введіть значення параметру N');
 
-if ((x + R) ** 2 + (y - R) ** 2 >= R ** 2 && y <= R && x >= -R && y >= 0 && x <= 0 || (x - R) ** 2 + (y + R) ** 2 >= R ** 2 && y >= -R && x <= R && y <= 0 && x >= 0) {
-  console.log('yes');
-} else {
-  console.log('no');
+let i;
+let S = 0;
+
+for (let i = N; i <= 22; i++) {
+  S += Math.sqrt(i ** 2 + N ** 2) / i;
 }
+
+console.log(S);
+
+S = 0;
+
+for (let i = 22; i >= N; i--) {
+  S += Math.sqrt(i ** 2 + N ** 2) / i;
+}
+
+console.log(S);
+
+S = 0;
+i = N;
+
+while (i <= 22) {
+  S += Math.sqrt(i ** 2 + N ** 2) / i;
+  i++;
+}
+
+console.log(S);
+
+S = 0;
+i = N;
+
+do {
+  if (i > 22) break;
+
+  S += Math.sqrt(i ** 2 + N ** 2) / i;
+  i++;
+} while (i <= 22);
+
+console.log(S);
