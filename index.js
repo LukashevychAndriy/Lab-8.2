@@ -1,26 +1,67 @@
-const R = +prompt('R = '); // Запрошуємо ввід значення вхідного параметру R
-const xp = +prompt('Введіть х початкове'); // Запрошуємо ввід x початкового
-const xk = +prompt('Введіть х кінцеве'); // Запрошуємо ввід х кінцевого
-const dx = +prompt('Введіть крок'); // Запрошуємо ввід кроку
+let P = 1;
+let n = 1;
 
-console.log('---------------------------');
-console.log('|\tx\t|\ty\t|');
-console.log('---------------------------');
+for (let n = 1; n <= 20; n++) {
+  let S = 0;
 
-let y; // Результат обчислень;
-
-for (let x = xp; x <= xk; x += dx) {
-  if (x <= -6) {
-    y = R;
-  } else if (x > -6 && x <= -R) {
-    y = (x + R) / (-R + 6); 
-  } else if (x > -R && x <= 0) {
-    y = R - Math.sqrt(R ** 2 - (x + R) ** 2);
-  } else if (x > 0 && x <= R) {
-    y = Math.sqrt(R ** 2 - x ** 2);
-  } else if (x > R) {
-    y = -x + R;
+  for (let k = n; k <= 20; k++) {
+    S += k;
   }
 
-  console.log(`|\t${x.toFixed(2)}\t|\t${y.toFixed(3)}\t|`);
+  P *= (n * n + S * S) / (n + 1);
 }
+
+console.log(P);
+
+P = 1;
+
+for (let n = 20; n >= 1; n--) {
+  let S = 0;
+
+  for (let k = 20; k >= n; k--) {
+    S += k;
+  }
+
+  P *= (n * n + S * S) / (n + 1);
+}
+
+console.log(P);
+
+P = 1;
+
+while (n <= 20) {
+  let S = 0;
+  let k = n;
+
+  while (k <= 20) {
+    S += k;
+    
+    k++;
+  }
+
+  P *= (n * n + S * S) / (n + 1);
+
+  n++;
+}
+
+console.log(P);
+
+P = 1;
+n = 1;
+
+do {
+  let S = 0;
+  let k = n;
+
+  while (k <= 20) {
+    S += k;
+    
+    k++;
+  }
+
+  P *= (n * n + S * S) / (n + 1);
+
+  n++;
+} while (n <= 20);
+
+console.log(P);
