@@ -1,67 +1,25 @@
-let P = 1;
-let n = 1;
+const xp = +prompt('Введіть значення параметру хp'); // Запрошуємо ввід параметру x початкового
+const xk = +prompt('Введіть значення параметру хk'); // Запрошуємо ввід параметру x кінцевого
+const dx = +prompt('Введіть значення параметру dx'); // Запрошуємо ввід параметру кроку
+const eps = +prompt('Введіть значення параметру eps'); // Запрошуємо ввід параметру точності
 
-for (let n = 1; n <= 20; n++) {
+console.log('|\tx\t\t|\tarctg(x)\t\t|\t\tS\t\t\t|\tn\t|');
+
+for (let x = xp; x <= xk && x < -1; x += dx) {
+  
   let S = 0;
+  let addition;
+  let n = 0;
 
-  for (let k = n; k <= 20; k++) {
-    S += k;
-  }
+  do {
+    addition = Math.pow(-1, n + 1) / ((2 * n + 1) * Math.pow(x, 2 * n + 1));
 
-  P *= (n * n + S * S) / (n + 1);
+    S += addition;
+
+    n++;
+  } while (Math.abs(addition) >= eps);
+
+  let result = -Math.PI / 2 + S;
+
+  console.log(`|\t${x.toFixed(2)}\t|\t${Math.atan(x).toFixed(10)}\t|\t${result.toFixed(10)}\t|\t${n}\t|`);
 }
-
-console.log(P);
-
-P = 1;
-
-for (let n = 20; n >= 1; n--) {
-  let S = 0;
-
-  for (let k = 20; k >= n; k--) {
-    S += k;
-  }
-
-  P *= (n * n + S * S) / (n + 1);
-}
-
-console.log(P);
-
-P = 1;
-
-while (n <= 20) {
-  let S = 0;
-  let k = n;
-
-  while (k <= 20) {
-    S += k;
-    
-    k++;
-  }
-
-  P *= (n * n + S * S) / (n + 1);
-
-  n++;
-}
-
-console.log(P);
-
-P = 1;
-n = 1;
-
-do {
-  let S = 0;
-  let k = n;
-
-  while (k <= 20) {
-    S += k;
-    
-    k++;
-  }
-
-  P *= (n * n + S * S) / (n + 1);
-
-  n++;
-} while (n <= 20);
-
-console.log(P);
