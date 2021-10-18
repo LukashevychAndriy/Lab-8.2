@@ -3,21 +3,22 @@ const xk = +prompt('Введіть значення параметру хk'); //
 const dx = +prompt('Введіть значення параметру dx'); // Запрошуємо ввід параметру кроку
 const eps = +prompt('Введіть значення параметру eps'); // Запрошуємо ввід параметру точності
 
-console.log('|\tx\t\t|\tarctg(x)\t\t|\t\tS\t\t\t|\tn\t|');
+console.log('|\tx\t\t|\tarctg(x)\t\t|\tS\t\t\t\t|\tn\t|');
 
 for (let x = xp; x <= xk && x < -1; x += dx) {
   
-  let S = 0;
-  let addition;
+  let a = -1 / x;
+  let S = a;
   let n = 0;
 
   do {
-    addition = Math.pow(-1, n + 1) / ((2 * n + 1) * Math.pow(x, 2 * n + 1));
-
-    S += addition;
-
     n++;
-  } while (Math.abs(addition) >= eps);
+
+    let R = (1 - 2 * n) / (2 * n * x * x + x * x);
+    
+    a *= R;
+    S += a;
+  } while (Math.abs(a) >= eps);
 
   let result = -Math.PI / 2 + S;
 
