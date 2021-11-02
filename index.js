@@ -1,26 +1,61 @@
-const xp = +prompt('Введіть значення параметру хp'); // Запрошуємо ввід параметру x початкового
-const xk = +prompt('Введіть значення параметру хk'); // Запрошуємо ввід параметру x кінцевого
-const dx = +prompt('Введіть значення параметру dx'); // Запрошуємо ввід параметру кроку
-const eps = +prompt('Введіть значення параметру eps'); // Запрошуємо ввід параметру точності
+function genArr(min, max, amount) {
+  const intArr = [];
 
-console.log('|\tx\t\t|\tarctg(x)\t\t|\tS\t\t\t\t|\tn\t|');
+  for (let i = 1; i <= amount; i++) {
+    const intN = Math.floor(min + Math.random() * (max - min + 1))
 
-for (let x = xp; x <= xk && x < -1; x += dx) {
-  
-  let a = -1 / x;
-  let S = a;
-  let n = 0;
+    intArr.push(intN);
+  }
 
-  do {
-    n++;
-
-    let R = (1 - 2 * n) / (2 * n * x * x + x * x);
-    
-    a *= R;
-    S += a;
-  } while (Math.abs(a) >= eps);
-
-  let result = -Math.PI / 2 + S;
-
-  console.log(`|\t${x.toFixed(2)}\t|\t${Math.atan(x).toFixed(10)}\t|\t${result.toFixed(10)}\t|\t${n}\t|`);
+  return intArr;
 }
+
+function getSum(arr) {
+  let sum = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 === 0 || !(i % 8 === 0)) {
+      sum += arr[i];
+    }
+  }
+
+  return sum;
+}
+
+function getAmount(arr) {
+  let amount = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 === 0 || !(i % 8 === 0)) {
+      amount++;
+    }
+  }
+
+  return amount;
+}
+
+function setZero(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 === 0 || !(i % 8 === 0)) {
+      arr[i] = 0;
+    }
+  }
+}
+
+function arrToString(arr) {
+  let string = '';
+
+  for (let i = 0; i < arr.length; i++) {
+    string += `${i}:\t${arr[i]}\n`;
+  }
+
+  return string;
+}
+
+const arr = genArr(5, 90, 25);
+
+console.log('Initial array:\n', arrToString(arr));
+console.log('Sum:', getSum(arr));
+console.log('Amount:', getAmount(arr));
+setZero(arr)  
+console.log('Changed array:\n', arrToString(arr));
