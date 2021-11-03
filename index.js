@@ -52,7 +52,7 @@ function sortArray(arr, a, b) {
   let arr2 = [];
 
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] >= a && arr[i] <= b) {
+    if (+arr[i].toFixed(0) >= a && +arr[i].toFixed(0) <= b) {
       arr1.push(arr[i]);
     } else {
       arr2.push(arr[i]);
