@@ -1,13 +1,13 @@
-function genArr(arr, min, max, amount) {
-  if (arr.length < amount) {
-    const intN = Math.floor(min + Math.random() * (max - min + 1));
+function genArr(min, max, amount) {
+  const intArr = [];
 
-    arr.push(intN);
+  for (let i = 1; i <= amount; i++) {
+    const intN = Math.floor(min + Math.random() * (max - min + 1))
 
-    return genArr(arr, min, max, amount)
+    intArr.push(intN);
   }
 
-  return arr;
+  return intArr;
 }
 
 function getOddAmount(arr) {
@@ -22,17 +22,17 @@ function getOddAmount(arr) {
   return amount;
 }
 
-function arrToString(arr, i, string) {
-  if (i < arr.length) {
-    string += `${i}:\t${arr[i]}\n`;
+function arrToString(arr) {
+  let string = '';
 
-    return arrToString(arr, ++i, string);
+  for (let i = 0; i < arr.length; i++) {
+    string += `${i}:\t${arr[i]}\n`;
   }
 
   return string;
 }
 
-const arr = genArr([], -100, 100, 10);
+const arr = genArr(-100, 100, 10);
 
-console.log('Initial array:\n', arrToString(arr, 0, ''));
+console.log('Initial array:\n', arrToString(arr));
 console.log('Amount of odd numbers:', getOddAmount(arr));
