@@ -12,26 +12,30 @@ function genArr(min, max, amount) {
 
 function getMin(arr) {
   let min = arr[0];
+  let minIdx = 0;
 
   for (let i = 1; i < arr.length; i++) {
     if (min > arr[i]) {
       min = arr[i];
+      minIdx = i;
     }
   }
 
-  return min;
+  return minIdx;
 }
 
 function getMax(arr) {
   let max = arr[0];
+  let maxIdx = 0;
 
   for (let i = 1; i < arr.length; i++) {
     if (max < arr[i]) {
       max = arr[i];
+      maxIdx = i;
     }
   }
 
-  return max;
+  return maxIdx;
 }
 
 function arrToString(arr) {
@@ -49,5 +53,5 @@ const n = +prompt('Введіть значення n');
 const arr = genArr(-100000, 100000, n);
 
 console.log('Initial array:\n', arrToString(arr));
-console.log('Min:', getMin(arr));
-console.log('Max:', getMax(arr));
+console.log('Index of min num:', getMin(arr));
+console.log('Index: of max num', getMax(arr));
